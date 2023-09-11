@@ -1,4 +1,5 @@
 import 'package:calculator/views/components/bigButton.dart';
+import 'package:calculator/views/components/ButtonBlue.dart';
 import 'package:flutter/material.dart';
 import 'components/button.dart';
 import 'components/screen.dart';
@@ -13,7 +14,7 @@ class Calculator extends StatefulWidget {
 
 class _MyAppState extends State<Calculator> {
   CalculatorController calculatorController = CalculatorController();
-  String _number = "0";
+  String _number = "0.0";
   int _index = 0;
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class _MyAppState extends State<Calculator> {
         brightness: Brightness.dark,
         elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(Colors.purple),
+            backgroundColor: MaterialStatePropertyAll(Colors.blueGrey),
           ),
         ),
       ),
@@ -32,21 +33,19 @@ class _MyAppState extends State<Calculator> {
         ),
         body: Center(
           child: Container(
-            width: 400,
-            height: 500,
-            decoration: BoxDecoration(
-              color: Colors.amber,
-              borderRadius: BorderRadius.circular(30),
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              color: Colors.black,
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Screen(
                   number: _number.toString(),
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  width: 400,
-                  height: 400,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.vertical(
                         top: Radius.zero, bottom: Radius.circular(30)),
@@ -56,11 +55,11 @@ class _MyAppState extends State<Calculator> {
                     children: [
                       Column(
                         children: [
-                          Button(
+                          ButtonBlue(
                               text: "AC",
                               onPressed: () {
                                 setState(() {
-                                  _number = "0";
+                                  _number = "0.0";
                                   _index = 0;
                                 });
                                 calculatorController.setNumber1(0.0);
@@ -71,7 +70,7 @@ class _MyAppState extends State<Calculator> {
                               text: "7",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "7";
                                     return;
                                   }
@@ -82,7 +81,7 @@ class _MyAppState extends State<Calculator> {
                               text: "4",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "4";
                                     return;
                                   }
@@ -93,7 +92,7 @@ class _MyAppState extends State<Calculator> {
                               text: "1",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "1";
                                     return;
                                   }
@@ -104,8 +103,8 @@ class _MyAppState extends State<Calculator> {
                               text: "0",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
-                                    _number = "0";
+                                  if (_number == "0.0") {
+                                    _number = "0.0";
                                     return;
                                   }
                                   _number += "0";
@@ -115,14 +114,14 @@ class _MyAppState extends State<Calculator> {
                       ),
                       Column(
                         children: [
-                          Button(
+                        ButtonBlue(
                               text: "CE",
                               onPressed: () {
                                 setState(() {
                                   if (_number.length == 1) {
                                     _number = _number.substring(
                                         0, _number.length - 1);
-                                    _number = "0";
+                                    _number = "0.0";
                                     return;
                                   }
                                   _number =
@@ -133,7 +132,7 @@ class _MyAppState extends State<Calculator> {
                               text: "8",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "8";
                                     return;
                                   }
@@ -144,7 +143,7 @@ class _MyAppState extends State<Calculator> {
                               text: "5",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "5";
                                     return;
                                   }
@@ -155,7 +154,7 @@ class _MyAppState extends State<Calculator> {
                               text: "2",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "2";
                                     return;
                                   }
@@ -166,7 +165,7 @@ class _MyAppState extends State<Calculator> {
                               text: ".",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "0.";
                                     return;
                                   }
@@ -181,11 +180,14 @@ class _MyAppState extends State<Calculator> {
                               text: "%",
                               onPressed: () {
                                 if (_index < 1) {
+                                  if(_number == "0.0"){
+                                    return;
+                                  }
                                   calculatorController.setOperation("%");
                                   calculatorController
                                       .setNumber1(double.parse(_number));
                                   setState(() {
-                                    _number = "0";
+                                    _number = "0.0";
                                     _index++;
                                   });
                                 }
@@ -194,7 +196,7 @@ class _MyAppState extends State<Calculator> {
                               text: "9",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "9";
                                     return;
                                   }
@@ -205,7 +207,7 @@ class _MyAppState extends State<Calculator> {
                               text: "6",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "6";
                                     return;
                                   }
@@ -216,7 +218,7 @@ class _MyAppState extends State<Calculator> {
                               text: "3",
                               onPressed: () {
                                 setState(() {
-                                  if (_number == "0") {
+                                  if (_number == "0.0") {
                                     _number = "3";
                                     return;
                                   }
@@ -249,11 +251,14 @@ class _MyAppState extends State<Calculator> {
                               text: "÷",
                               onPressed: () {
                                 if (_index < 1) {
+                                  if(_number == "0.0"){
+                                    return;
+                                  }
                                   calculatorController.setOperation("/");
                                   calculatorController
                                       .setNumber1(double.parse(_number));
                                   setState(() {
-                                    _number = "0";
+                                    _number = "0.0";
                                     _index++;
                                   });
                                 }
@@ -262,11 +267,14 @@ class _MyAppState extends State<Calculator> {
                               text: "x",
                               onPressed: () {
                                 if (_index < 1) {
+                                  if(_number == "0.0"){
+                                    return;
+                                  }
                                   calculatorController.setOperation("*");
                                   calculatorController
                                       .setNumber1(double.parse(_number));
                                   setState(() {
-                                    _number = "0";
+                                    _number = "0.0";
                                     _index++;
                                   });
                                 }
@@ -275,11 +283,14 @@ class _MyAppState extends State<Calculator> {
                               text: "-",
                               onPressed: () {
                                 if (_index < 1) {
+                                  if(_number == "0.0"){
+                                    return;
+                                  }
                                   calculatorController.setOperation("-");
                                   calculatorController
                                       .setNumber1(double.parse(_number));
                                   setState(() {
-                                    _number = "0";
+                                    _number = "0.0";
                                     _index++;
                                   });
                                 }
@@ -288,11 +299,14 @@ class _MyAppState extends State<Calculator> {
                               text: "+",
                               onPressed: () {
                                 if (_index < 1) {
+                                  if(_number == "0.0"){
+                                    return;
+                                  }
                                   calculatorController.setOperation("+");
                                   calculatorController
                                       .setNumber1(double.parse(_number));
                                   setState(() {
-                                    _number = "0";
+                                    _number = "0.0";
                                     _index++;
                                   });
                                 }

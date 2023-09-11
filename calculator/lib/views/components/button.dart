@@ -8,9 +8,8 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: MediaQuery.sizeOf(context).height * 0.07,
       margin: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-      decoration: BoxDecoration(),
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(text.toString()),

@@ -7,26 +7,34 @@ class Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
-      height: 100,
+      width: MediaQuery.sizeOf(context).width * 0.857,
+      height: MediaQuery.sizeOf(context).height * 0.15,
       padding: const EdgeInsets.all(30),
+      decoration: const BoxDecoration(
+          color: Colors.blueGrey,
+        ),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          color: const Color.fromARGB(255, 37, 61, 37),
+          borderRadius: BorderRadius.circular(15),
           border: Border.all(width: 3),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: Text(
-            number.toString(),
-            textAlign: TextAlign.end,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                number.toString(),
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

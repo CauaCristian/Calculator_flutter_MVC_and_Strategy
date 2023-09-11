@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class BigButton extends StatelessWidget {
+class ButtonBlue extends StatelessWidget {
   final String text;
   final void Function() onPressed;
-  BigButton({required this.text, required this.onPressed});
+  ButtonBlue({required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.sizeOf(context).height * 0.155,
+      height: MediaQuery.sizeOf(context).height * 0.07,
       margin: const EdgeInsets.fromLTRB(0, 15, 0, 0),
       child: ElevatedButton(
         style: const ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(
-            Color.fromARGB(255, 241, 0, 0),
+            Color.fromARGB(255, 0, 36, 241),
           ),
         ),
         onPressed: onPressed,
