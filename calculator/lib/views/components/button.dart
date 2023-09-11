@@ -10,6 +10,7 @@ class Button extends StatelessWidget {
     return Container(
       height: 60,
       margin: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+      decoration: BoxDecoration(),
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(text.toString()),
