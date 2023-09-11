@@ -2,6 +2,7 @@ import 'package:calculator/views/components/bigButton.dart';
 import 'package:flutter/material.dart';
 import 'components/button.dart';
 import 'components/screen.dart';
+import '../controllers/calculatorController.dart';
 
 class Calculator extends StatefulWidget {
   const Calculator({super.key});
@@ -11,7 +12,8 @@ class Calculator extends StatefulWidget {
 }
 
 class _MyAppState extends State<Calculator> {
-  String? number = "0";
+  CalculatorController calculatorController = CalculatorController();
+  String number = "0";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
