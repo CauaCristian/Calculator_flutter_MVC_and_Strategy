@@ -2,12 +2,13 @@ import 'strategy/OperationStrategy.dart';
 class CalculatorModel {
   double _number1 = 0.0;
   double _number2 = 0.0;
-  String _operation = "";
+  String _operation = "+";
 
-  set number1(double number1) => this._number1 = number1;
-  set number2(double number2) => this._number2 = number2;
+  set number1(double number1) => _number1 = number1;
+  set number2(double number2) => _number2 = number2;
+  set operation(String operation) => _operation = operation;
 
-  double Calculate(){
+  double calculate(){
     if(_operation == "+"){
       return AdditionStrategy().calculate(_number1,_number2);
     }

@@ -13,7 +13,8 @@ class Calculator extends StatefulWidget {
 
 class _MyAppState extends State<Calculator> {
   CalculatorController calculatorController = CalculatorController();
-  String number = "0";
+  String _number = "0";
+  int _index = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +41,7 @@ class _MyAppState extends State<Calculator> {
             child: Column(
               children: [
                 Screen(
-                  number: number.toString(),
+                  number: _number.toString(),
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -55,37 +56,247 @@ class _MyAppState extends State<Calculator> {
                     children: [
                       Column(
                         children: [
-                          Button(text: "AC", onPressed: () {}),
-                          Button(text: "7", onPressed: () {}),
-                          Button(text: "4", onPressed: () {}),
-                          Button(text: "1", onPressed: () {}),
-                          Button(text: "0", onPressed: () {}),
+                          Button(
+                              text: "AC",
+                              onPressed: () {
+                                setState(() {
+                                  _number = "0";
+                                  _index = 0;
+                                });
+                                calculatorController.setNumber1(0.0);
+                                calculatorController.setNumber2(0.0);
+                                calculatorController.setOperation("+");
+                              }),
+                          Button(
+                              text: "7",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "7";
+                                    return;
+                                  }
+                                  _number += "7";
+                                });
+                              }),
+                          Button(
+                              text: "4",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "4";
+                                    return;
+                                  }
+                                  _number += "4";
+                                });
+                              }),
+                          Button(
+                              text: "1",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "1";
+                                    return;
+                                  }
+                                  _number += "1";
+                                });
+                              }),
+                          Button(
+                              text: "0",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "0";
+                                    return;
+                                  }
+                                  _number += "0";
+                                });
+                              }),
                         ],
                       ),
                       Column(
                         children: [
-                          Button(text: "CE", onPressed: () {}),
-                          Button(text: "8", onPressed: () {}),
-                          Button(text: "5", onPressed: () {}),
-                          Button(text: "2", onPressed: () {}),
-                          Button(text: ".", onPressed: () {}),
+                          Button(
+                              text: "CE",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number.length == 1) {
+                                    _number = _number.substring(
+                                        0, _number.length - 1);
+                                    _number = "0";
+                                    return;
+                                  }
+                                  _number =
+                                      _number.substring(0, _number.length - 1);
+                                });
+                              }),
+                          Button(
+                              text: "8",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "8";
+                                    return;
+                                  }
+                                  _number += "8";
+                                });
+                              }),
+                          Button(
+                              text: "5",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "5";
+                                    return;
+                                  }
+                                  _number += "5";
+                                });
+                              }),
+                          Button(
+                              text: "2",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "2";
+                                    return;
+                                  }
+                                  _number += "2";
+                                });
+                              }),
+                          Button(
+                              text: ".",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "0.";
+                                    return;
+                                  }
+                                  _number += ".";
+                                });
+                              }),
                         ],
                       ),
                       Column(
                         children: [
-                          Button(text: "%", onPressed: () {}),
-                          Button(text: "9", onPressed: () {}),
-                          Button(text: "6", onPressed: () {}),
-                          Button(text: "3", onPressed: () {}),
-                          Button(text: "=", onPressed: () {}),
+                          Button(
+                              text: "%",
+                              onPressed: () {
+                                if (_index < 1) {
+                                  calculatorController.setOperation("%");
+                                  calculatorController
+                                      .setNumber1(double.parse(_number));
+                                  setState(() {
+                                    _number = "0";
+                                    _index++;
+                                  });
+                                }
+                              }),
+                          Button(
+                              text: "9",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "9";
+                                    return;
+                                  }
+                                  _number += "9";
+                                });
+                              }),
+                          Button(
+                              text: "6",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "6";
+                                    return;
+                                  }
+                                  _number += "6";
+                                });
+                              }),
+                          Button(
+                              text: "3",
+                              onPressed: () {
+                                setState(() {
+                                  if (_number == "0") {
+                                    _number = "3";
+                                    return;
+                                  }
+                                  _number += "3";
+                                });
+                              }),
+                          Button(
+                              text: "=",
+                              onPressed: () {
+                                if (_index == 0) {
+                                  calculatorController
+                                      .setNumber1(double.parse(_number));
+                                }
+                                if (_index == 1) {
+                                  calculatorController
+                                      .setNumber2(double.parse(_number));
+                                }
+                                setState(() {
+                                  _number = calculatorController
+                                      .calculate()
+                                      .toString();
+                                  _index = 0;
+                                });
+                              }),
                         ],
                       ),
                       Column(
                         children: [
-                          Button(text: "÷", onPressed: () {}),
-                          Button(text: "x", onPressed: () {}),
-                          Button(text: "-", onPressed: () {}),
-                          BigButton(text: "+", onPressed: () {}),
+                          Button(
+                              text: "÷",
+                              onPressed: () {
+                                if (_index < 1) {
+                                  calculatorController.setOperation("/");
+                                  calculatorController
+                                      .setNumber1(double.parse(_number));
+                                  setState(() {
+                                    _number = "0";
+                                    _index++;
+                                  });
+                                }
+                              }),
+                          Button(
+                              text: "x",
+                              onPressed: () {
+                                if (_index < 1) {
+                                  calculatorController.setOperation("*");
+                                  calculatorController
+                                      .setNumber1(double.parse(_number));
+                                  setState(() {
+                                    _number = "0";
+                                    _index++;
+                                  });
+                                }
+                              }),
+                          Button(
+                              text: "-",
+                              onPressed: () {
+                                if (_index < 1) {
+                                  calculatorController.setOperation("-");
+                                  calculatorController
+                                      .setNumber1(double.parse(_number));
+                                  setState(() {
+                                    _number = "0";
+                                    _index++;
+                                  });
+                                }
+                              }),
+                          BigButton(
+                              text: "+",
+                              onPressed: () {
+                                if (_index < 1) {
+                                  calculatorController.setOperation("+");
+                                  calculatorController
+                                      .setNumber1(double.parse(_number));
+                                  setState(() {
+                                    _number = "0";
+                                    _index++;
+                                  });
+                                }
+                              })
                         ],
                       ),
                     ],
