@@ -12,7 +12,14 @@ class Button extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(0, 15, 0, 0),
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(text.toString()),
+        child: Text(
+          text.toString(),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

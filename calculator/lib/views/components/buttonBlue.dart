@@ -17,7 +17,14 @@ class ButtonBlue extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(text.toString()),
+        child: Text(
+          text.toString(),
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

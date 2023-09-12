@@ -29,7 +29,7 @@ class Screen extends StatelessWidget {
                 number.toString(),
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),

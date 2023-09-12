@@ -17,7 +17,14 @@ class BigButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(text.toString()),
+        child: Text(
+          text.toString(),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }
