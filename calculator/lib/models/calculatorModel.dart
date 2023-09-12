@@ -7,6 +7,7 @@ class CalculatorModel {
   set number1(double number1) => _number1 = number1;
   set number2(double number2) => _number2 = number2;
   set operation(String operation) => _operation = operation;
+  String get operation => this._operation;
 
   double calculate(){
     if(_operation == "+"){
@@ -15,10 +16,10 @@ class CalculatorModel {
     if(_operation == "-"){
       return SubtracionStrategy().calculate(_number1,_number2);
     }
-    if(_operation == "*"){
+    if(_operation == "x"){
       return MultiplicationStrategy().calculate(_number1,_number2);
     }
-    if(_operation == "/"){
+    if(_operation == "÷"){
       return DivisonStrategy().calculate(_number1,_number2);
     }
     if(_operation == "%"){
